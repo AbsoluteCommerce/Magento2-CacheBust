@@ -6,6 +6,13 @@
     </h2>
     
     <p>
+        <button onclick="setLocation('<?php echo $block->getCacheBustAllUrl() ?>')" type="button">
+            <?php echo __('Bust All URLs') ?>
+        </button>
+        <span><?php echo __('The same as clicking each of the below buttons individually.') ?></span>
+    </p>
+    
+    <p>
         <button onclick="setLocation('<?php echo $block->getCacheBustStaticUrl() ?>')" type="button">
             <?php echo __('Bust Static URLs') ?>
         </button>

@@ -54,6 +54,15 @@ class CacheBust
     /**
      * 
      */
+    public function bustAll()
+    {
+        $this->bustStatic();
+        $this->bustMedia();
+    }
+
+    /**
+     * 
+     */
     public function bustStatic()
     {
         $this->_commonLogic(

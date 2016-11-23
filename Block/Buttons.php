@@ -8,6 +8,14 @@ class Buttons extends Template
     /**
      * @return string
      */
+    public function getCacheBustAllUrl()
+    {
+        return $this->getUrl('Absolute_CDNCacheBust/action/allAction');
+    }
+
+    /**
+     * @return string
+     */
     public function getCacheBustStaticUrl()
     {
         return $this->getUrl('Absolute_CDNCacheBust/action/staticAction');
