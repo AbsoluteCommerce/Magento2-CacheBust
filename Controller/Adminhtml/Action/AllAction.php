@@ -14,7 +14,7 @@ class AllAction extends ActionAbstract
         try {
             $this->cacheBustModel->bustAll();
             $this->messageManager->addSuccessMessage(
-                __('Need to update this so it lists all the URLs that were updated...') #todo
+                __('All CDN Urls have been Cache Busted.')
             );
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage($e->getMessage());

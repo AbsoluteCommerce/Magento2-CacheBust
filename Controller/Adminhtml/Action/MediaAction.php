@@ -14,7 +14,7 @@ class MediaAction extends ActionAbstract
         try {
             $this->cacheBustModel->bustMedia();
             $this->messageManager->addSuccessMessage(
-                __('Need to update this so it lists all the URLs that were updated...') #todo
+                __('Media CDN Urls have been Cache Busted.')
             );
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage($e->getMessage());

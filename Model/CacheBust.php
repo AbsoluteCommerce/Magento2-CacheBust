@@ -6,10 +6,11 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Config\Model\ResourceModel\Config\Data\Collection as ConfigCollection;
 use Magento\Config\Model\ResourceModel\Config\Data\CollectionFactory as ConfigCollectionFactory;
+use Magento\Framework\App\Config\Value as ConfigValue;
 
 class CacheBust
 {
-    const REVISION_PLACEHOLDER = '%rev%';
+    const BUST_PLACEHOLDER = '%bust%';
 
     const STATIC_UNSECURE_TEMPLATE = 'absolute_cdncachebust/static/unsecure_url';
     const STATIC_SECURE_TEMPLATE   = 'absolute_cdncachebust/static/secure_url';
@@ -154,6 +155,8 @@ class CacheBust
         $configCollection->addFieldToFilter('value', ['notnull' => true]);
         
         foreach ($configCollection as $_config) {
+            /** @var ConfigValue $_config */
+            
             $_value = trim($_config->getValue());
             if (!$_value) {
                 continue;
@@ -176,12 +179,12 @@ class CacheBust
      */
     protected function _generateUrl($template)
     {
-        if (strpos($template, self::REVISION_PLACEHOLDER) === false) {
+        if (strpos($template, self::BUST_PLACEHOLDER) === false) {
             return false;
         }
 
-        $revision = date('YmdHis');
-        $url = str_replace(self::REVISION_PLACEHOLDER, $revision, $template);
+        $bustValue = date('YmdHis');
+        $url = str_replace(self::BUST_PLACEHOLDER, $bustValue, $template);
         
         return $url;
     }

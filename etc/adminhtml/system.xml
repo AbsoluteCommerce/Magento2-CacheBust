@@ -23,6 +23,12 @@
                    showInWebsite="1"
                    showInStore="1">
                 <label>Static URL Config</label>
+                <comment><![CDATA[
+                    Static Base URLs for the 'CDN Cache Busting' buttons under System > Cache Management.
+                    <br />These URL values are used to update the Magento Static URLs to immediately invalidate the CDN cache.
+                    <br />Each URL must contain the term <strong>%bust%</strong> which will be replaced by a dynamic value.
+                    <br />Enter an empty value to disable at any default, website or store scope. 
+                    <br /><br />]]></comment>
                 <field id="unsecure_url"
                        translate="label comment"
                        type="text"
@@ -50,6 +56,12 @@
                    showInWebsite="1"
                    showInStore="1">
                 <label>Media URL Config</label>
+                <comment><![CDATA[
+                    Media Base URLs for the 'CDN Cache Busting' buttons under System > Cache Management.
+                    <br />These URL values are used to update the Magento Media URLs to immediately invalidate the CDN cache.
+                    <br />Each URL must contain the term <strong>%bust%</strong> which will be replaced by a dynamic value.
+                    <br />Enter an empty value to disable at any default, website or store scope.
+                    <br /><br />]]></comment>
                 <field id="unsecure_url"
                        translate="label comment"
                        type="text"
