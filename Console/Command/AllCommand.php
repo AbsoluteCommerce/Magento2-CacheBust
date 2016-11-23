@@ -9,7 +9,7 @@ use Absolute\CDNCacheBust\Model\CacheBust;
 class AllCommand extends Command
 {
     /** @var CacheBust */
-    protected $cacheBustModel;
+    private $cacheBustModel;
 
     /**
      * @param CacheBust $cacheBust
@@ -23,7 +23,7 @@ class AllCommand extends Command
     }
 
     /**
-     * 
+     *
      */
     protected function configure()
     {

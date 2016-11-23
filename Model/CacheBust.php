@@ -53,7 +53,7 @@ class CacheBust
     }
 
     /**
-     * 
+     *
      */
     public function bustAll()
     {
@@ -62,7 +62,7 @@ class CacheBust
     }
 
     /**
-     * 
+     *
      */
     public function bustStatic()
     {
@@ -77,7 +77,7 @@ class CacheBust
     }
 
     /**
-     * 
+     *
      */
     public function bustMedia()
     {
@@ -177,7 +177,7 @@ class CacheBust
      * @param string $template
      * @return bool|string
      */
-    protected function _generateUrl($template)
+    private function _generateUrl($template)
     {
         if (strpos($template, self::BUST_PLACEHOLDER) === false) {
             return false;
