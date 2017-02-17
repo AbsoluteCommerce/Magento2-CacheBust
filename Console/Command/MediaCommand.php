@@ -1,27 +1,14 @@
 <?php
-namespace Absolute\CDNCacheBust\Console\Command;
+/**
+ * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ */
+namespace Absolute\CacheBust\Console\Command;
 
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Absolute\CDNCacheBust\Model\CacheBust;
 
-class MediaCommand extends Command
+class MediaCommand extends CommandAbstract
 {
-    /** @var CacheBust */
-    private $cacheBustModel;
-
-    /**
-     * @param CacheBust $cacheBust
-     */
-    public function __construct(
-        CacheBust $cacheBust
-    ) {
-        parent::__construct();
-        
-        $this->cacheBustModel = $cacheBust;
-    }
-
     /**
      *
      */
@@ -30,7 +17,7 @@ class MediaCommand extends Command
         parent::configure();
         
         $this
-            ->setName('absolute:cdncachebust:media')
+            ->setName(self::COMMAND_NAMESPACE . 'media')
             ->setDescription('Bust Media URLs.');
     }
 

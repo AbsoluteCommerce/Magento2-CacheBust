@@ -1,8 +1,11 @@
 <?php
-namespace Absolute\CDNCacheBust\Controller\Adminhtml\Action;
+/**
+ * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ */
+namespace Absolute\CacheBust\Controller\Adminhtml\Action;
 
 use Magento\Framework\Controller\Result\Raw;
-use Absolute\CDNCacheBust\Controller\Adminhtml\ActionAbstract;
+use Absolute\CacheBust\Controller\Adminhtml\ActionAbstract;
 
 class StaticAction extends ActionAbstract
 {
@@ -14,7 +17,7 @@ class StaticAction extends ActionAbstract
         try {
             $this->cacheBustModel->bustStatic();
             $this->messageManager->addSuccessMessage(
-                __('Static CDN Urls have been Cache Busted.')
+                __('Static URLs have been Cache Busted.')
             );
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage($e->getMessage());

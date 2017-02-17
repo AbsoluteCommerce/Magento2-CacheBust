@@ -3,10 +3,10 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block class="Absolute\CDNCacheBust\Block\Buttons"
-                   name="absolute_cdncachebust_buttons"
+            <block class="Absolute\CacheBust\Block\Buttons"
+                   name="absolute_cachebust_buttons"
                    before="cache.additional"
-                   template="Absolute_CDNCacheBust::buttons.phtml"/>
+                   template="Absolute_CacheBust::buttons.phtml"/>
         </referenceContainer>
     </body>
 </page>

@@ -1,8 +1,11 @@
 <?php
-namespace Absolute\CDNCacheBust\Controller\Adminhtml\Action;
+/**
+ * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ */
+namespace Absolute\CacheBust\Controller\Adminhtml\Action;
 
 use Magento\Framework\Controller\Result\Raw;
-use Absolute\CDNCacheBust\Controller\Adminhtml\ActionAbstract;
+use Absolute\CacheBust\Controller\Adminhtml\ActionAbstract;
 
 class MediaAction extends ActionAbstract
 {
@@ -14,7 +17,7 @@ class MediaAction extends ActionAbstract
         try {
             $this->cacheBustModel->bustMedia();
             $this->messageManager->addSuccessMessage(
-                __('Media CDN Urls have been Cache Busted.')
+                __('Media URLs have been Cache Busted.')
             );
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage($e->getMessage());

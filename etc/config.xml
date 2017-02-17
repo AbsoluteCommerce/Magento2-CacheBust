@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <absolute_cachebust>
+            <static>
+                <is_enabled>0</is_enabled>
+                <template>version%s</template>
+                <value>19700101010000</value>
+            </static>
+            <media>
+                <is_enabled>0</is_enabled>
+                <template>version%s</template>
+                <value>19700101010000</value>
+            </media>
+        </absolute_cachebust>
+    </default>
+</config>

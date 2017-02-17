@@ -1,5 +1,8 @@
 <?php
-namespace Absolute\CDNCacheBust\Block;
+/**
+ * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ */
+namespace Absolute\CacheBust\Block;
 
 use Magento\Backend\Block\Template;
 
@@ -10,7 +13,7 @@ class Buttons extends Template
      */
     public function getCacheBustAllUrl()
     {
-        return $this->getUrl('Absolute_CDNCacheBust/action/allAction');
+        return $this->getUrl('Absolute_CacheBust/action/allAction');
     }
 
     /**
@@ -18,7 +21,7 @@ class Buttons extends Template
      */
     public function getCacheBustStaticUrl()
     {
-        return $this->getUrl('Absolute_CDNCacheBust/action/staticAction');
+        return $this->getUrl('Absolute_CacheBust/action/staticAction');
     }
 
     /**
@@ -26,6 +29,6 @@ class Buttons extends Template
      */
     public function getCacheBustMediaUrl()
     {
-        return $this->getUrl('Absolute_CDNCacheBust/action/mediaAction');
+        return $this->getUrl('Absolute_CacheBust/action/mediaAction');
     }
 }

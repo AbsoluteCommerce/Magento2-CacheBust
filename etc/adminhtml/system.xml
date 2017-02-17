@@ -2,19 +2,28 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
+        <section id="dev">
+            <group id="static">
+                <field id="sign">
+                    <comment><![CDATA[
+                    <strong>Notice: this setting is not in use. See Absolute Commerce Cache Bust configuration.</strong>
+                    ]]></comment>
+                </field>
+            </group>
+        </section>
         <tab id="absolute_commerce" translate="label" sortOrder="110">
-            <label>Absolute Commerce Ltd.</label>
+            <label>Absolute Commerce</label>
         </tab>
-        <section id="absolute_cdncachebust"
+        <section id="absolute_cachebust"
                  translate="label"
                  type="text"
                  sortOrder="10"
                  showInDefault="1"
                  showInWebsite="1"
                  showInStore="1">
-            <label>CDN CacheBust</label>
+            <label>Cache Bust</label>
             <tab>absolute_commerce</tab>
-            <resource>Absolute_CDNCacheBust::config</resource>
+            <resource>Absolute_CacheBust::config</resource>
             <group id="static"
                    translate="label"
                    type="text"
@@ -22,63 +31,61 @@
                    showInDefault="1"
                    showInWebsite="1"
                    showInStore="1">
-                <label>Static URL Config</label>
-                <comment><![CDATA[
-                    Static Base URLs for the 'CDN Cache Busting' buttons under System > Cache Management.
-                    <br />These URL values are used to update the Magento Static URLs to immediately invalidate the CDN cache.
-                    <br />Each URL must contain the term <strong>%bust%</strong> which will be replaced by a dynamic value.
-                    <br />Enter an empty value to disable at any default, website or store scope. 
-                    <br /><br />]]></comment>
-                <field id="unsecure_url"
+                <label>Static URLs</label>
+                <field id="is_enabled"
                        translate="label comment"
-                       type="text"
+                       type="select"
                        sortOrder="10"
                        showInDefault="1"
                        showInWebsite="1"
-                       showInStore="1">
-                    <label>Unsecure URL</label>
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Absolute\CacheBust\Model\Source\YesNo</source_model>
+                    <comment>Enable / Disable Cache Busting at Global, Website or Store level.</comment>
                 </field>
-                <field id="secure_url"
+                <field id="template"
                        translate="label comment"
                        type="text"
                        sortOrder="20"
                        showInDefault="1"
                        showInWebsite="1"
-                       showInStore="1">
-                    <label>Secure URL</label>
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Signature Template</label>
+                    <comment><![CDATA[This will be included in your Static URL with '%s' replaced with a timestamp, eg: https://abscom.co/static/version12345/path/to/file.js. The default is: version%s]]></comment>
                 </field>
             </group>
             <group id="media"
                    translate="label"
                    type="text"
-                   sortOrder="20"
+                   sortOrder="10"
                    showInDefault="1"
                    showInWebsite="1"
                    showInStore="1">
-                <label>Media URL Config</label>
-                <comment><![CDATA[
-                    Media Base URLs for the 'CDN Cache Busting' buttons under System > Cache Management.
-                    <br />These URL values are used to update the Magento Media URLs to immediately invalidate the CDN cache.
-                    <br />Each URL must contain the term <strong>%bust%</strong> which will be replaced by a dynamic value.
-                    <br />Enter an empty value to disable at any default, website or store scope.
-                    <br /><br />]]></comment>
-                <field id="unsecure_url"
+                <label>Media URLs</label>
+                <field id="is_enabled"
                        translate="label comment"
-                       type="text"
+                       type="select"
                        sortOrder="10"
                        showInDefault="1"
-                       showInWebsite="1"
-                       showInStore="1">
-                    <label>Unsecure URL</label>
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Absolute\CacheBust\Model\Source\YesNo</source_model>
+                    <comment>Enable / Disable Cache Busting at Global, Website or Store level.</comment>
                 </field>
-                <field id="secure_url"
+                <field id="template"
                        translate="label comment"
                        type="text"
                        sortOrder="20"
                        showInDefault="1"
                        showInWebsite="1"
-                       showInStore="1">
-                    <label>Secure URL</label>
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Signature Template</label>
+                    <comment><![CDATA[This will be included in your Media URL with '%s' replaced with a timestamp, eg: https://abscom.co/media/version12345/path/to/file.js. The default is: version%s]]></comment>
                 </field>
             </group>
         </section>

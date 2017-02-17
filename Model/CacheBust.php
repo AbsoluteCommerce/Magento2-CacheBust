@@ -1,55 +1,51 @@
 <?php
-namespace Absolute\CDNCacheBust\Model;
+/**
+ * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ */
+namespace Absolute\CacheBust\Model;
 
-use Magento\Store\Model\Store;
-use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Cache\TypeListInterface;
+use Magento\Framework\App\Config\Value as ConfigValue;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Config\Model\ResourceModel\Config\Data\Collection as ConfigCollection;
 use Magento\Config\Model\ResourceModel\Config\Data\CollectionFactory as ConfigCollectionFactory;
-use Magento\Framework\App\Config\Value as ConfigValue;
+use Magento\PageCache\Model\Cache\Type as PageCache;
+use Magento\Framework\App\Cache\Type\Config as ConfigCache;
+use Magento\Framework\App\Cache\Type\Block as BlockCache;
+use Absolute\CacheBust\Model\Config as CacheBustConfig;
+use Absolute\CacheBust\Model\Source\YesNo;
 
 class CacheBust
 {
-    const BUST_PLACEHOLDER = '%bust%';
-
-    const STATIC_UNSECURE_TEMPLATE = 'absolute_cdncachebust/static/unsecure_url';
-    const STATIC_SECURE_TEMPLATE   = 'absolute_cdncachebust/static/secure_url';
-
-    const MEDIA_UNSECURE_TEMPLATE = 'absolute_cdncachebust/media/unsecure_url';
-    const MEDIA_SECURE_TEMPLATE   = 'absolute_cdncachebust/media/secure_url';
-
-    const UNSECURE_BASE_STATIC_URL = 'web/unsecure/base_static_url';
-    const SECURE_BASE_STATIC_URL   = 'web/secure/base_static_url';
-
-    const UNSECURE_BASE_MEDIA_URL = 'web/unsecure/base_media_url';
-    const SECURE_BASE_MEDIA_URL   = 'web/secure/base_media_url';
-
-    const SCOPE_DEFAULT = 'default';
-    const SCOPE_STORE   = 'stores';
-    const SCOPE_WEBSITE = 'websites';
-
+    /** @var array */
+    private $cacheTypes = [
+        ConfigCache::TYPE_IDENTIFIER,
+        BlockCache::TYPE_IDENTIFIER,
+        PageCache::TYPE_IDENTIFIER,
+    ];
+    
     /** @var ConfigInterface */
     private $config;
-
-    /** @var ScopeConfigInterface */
-    private $scopeConfig;
 
     /** @var ConfigCollectionFactory */
     private $configCollectionFactory;
 
+    /** @var TypeListInterface */
+    private $cacheTypeList;
+
     /**
      * @param ConfigInterface $config
-     * @param ScopeConfigInterface $scopeConfig
      * @param ConfigCollectionFactory $configCollectionFactory
+     * @param TypeListInterface $cacheTypeList
      */
     public function __construct(
         ConfigInterface $config,
-        ScopeConfigInterface $scopeConfig,
-        ConfigCollectionFactory $configCollectionFactory
+        ConfigCollectionFactory $configCollectionFactory,
+        TypeListInterface $cacheTypeList
     ) {
         $this->config = $config;
-        $this->scopeConfig = $scopeConfig;
         $this->configCollectionFactory = $configCollectionFactory;
+        $this->cacheTypeList = $cacheTypeList;
     }
 
     /**
@@ -57,135 +53,78 @@ class CacheBust
      */
     public function bustAll()
     {
-        $this->bustStatic();
-        $this->bustMedia();
+        $this->bustStatic(false);
+        $this->bustMedia(false);
+        $this->clearCache();
     }
 
     /**
-     *
+     * @param bool $clearCache
      */
-    public function bustStatic()
+    public function bustStatic($clearCache = true)
     {
-        $this->_commonLogic(
-            self::STATIC_UNSECURE_TEMPLATE,
-            self::UNSECURE_BASE_STATIC_URL
-        );
-        $this->_commonLogic(
-            self::STATIC_SECURE_TEMPLATE,
-            self::SECURE_BASE_STATIC_URL
-        );
+        $scopes = $this->_getEnabledScopes(CacheBustConfig::XML_PATH_STATIC_ENABLED);
+        $this->_updateValues($scopes, CacheBustConfig::XML_PATH_STATIC_VALUE);
+        
+        if ($clearCache) {
+            $this->clearCache();
+        }
     }
 
     /**
-     *
+     * @param bool $clearCache
      */
-    public function bustMedia()
+    public function bustMedia($clearCache = true)
     {
-        $this->_commonLogic(
-            self::MEDIA_UNSECURE_TEMPLATE,
-            self::UNSECURE_BASE_MEDIA_URL
-        );
-        $this->_commonLogic(
-            self::MEDIA_SECURE_TEMPLATE,
-            self::SECURE_BASE_MEDIA_URL
-        );
+        $scopes = $this->_getEnabledScopes(CacheBustConfig::XML_PATH_MEDIA_ENABLED);
+        $this->_updateValues($scopes, CacheBustConfig::XML_PATH_MEDIA_VALUE);
+
+        if ($clearCache) {
+            $this->clearCache();
+        }
     }
 
     /**
-     * @param string $templatePath
-     * @param string $valuePath
+     * 
      */
-    private function _commonLogic($templatePath, $valuePath)
+    public function clearCache()
     {
-        /**
-         * We are only interested in websites and
-         * stores which have a template URL defined.
-         */
-        $scopesWithTemplate = array_merge(
-            $this->_getScopesWithTemplate(
-                $templatePath,
-                self::SCOPE_DEFAULT
-            ),
-            $this->_getScopesWithTemplate(
-                $templatePath,
-                self::SCOPE_WEBSITE
-            ),
-            $this->_getScopesWithTemplate(
-                $templatePath,
-                self::SCOPE_STORE
-            )
-        );
-
-        foreach ($scopesWithTemplate as $_scopeData) {
-            /**
-             * Generate a new Cache Bust value for this
-             * scope, and skip if it fails for any reason.
-             */
-            $_bustedUrl = $this->_generateUrl($_scopeData['value']);
-            if (!$_bustedUrl) {
-                continue;
-            }
-
-            /**
-             * Update the system configuration
-             * with the Cache Busted URL value.
-             */
-            $this->config->saveConfig(
-                $valuePath,
-                $_bustedUrl,
-                $_scopeData['scope'],
-                (int)$_scopeData['scope_id']
-            );
+        foreach ($this->cacheTypes as $_type) {
+            $this->cacheTypeList->cleanType($_type);
         }
     }
 
     /**
      * @param string $path
-     * @param string $scope
-     * @return array
+     * @return ConfigCollection
      */
-    private function _getScopesWithTemplate($path, $scope)
+    private function _getEnabledScopes($path)
     {
-        $scopes = [];
-
         /** @var ConfigCollection $configCollection */
         $configCollection = $this->configCollectionFactory->create();
         $configCollection->addFieldToFilter('path', $path);
-        $configCollection->addFieldToFilter('scope', $scope);
-        $configCollection->addFieldToFilter('value', ['notnull' => true]);
+        $configCollection->addFieldToFilter('value', YesNo::OPTION_YES);
         
-        foreach ($configCollection as $_config) {
-            /** @var ConfigValue $_config */
-            
-            $_value = trim($_config->getValue());
-            if (!$_value) {
-                continue;
-            }
-            
-            $scopes[] = [
-                'path'     => $_config->getPath(),
-                'scope'    => $_config->getScope(),
-                'scope_id' => $_config->getScopeId(),
-                'value'    => $_value,
-            ];
-        }
-
-        return $scopes;
+        return $configCollection;
     }
 
     /**
-     * @param string $template
-     * @return bool|string
+     * @param ConfigCollection $scopes
+     * @param string $valuePath
      */
-    private function _generateUrl($template)
+    private function _updateValues(ConfigCollection $scopes, $valuePath)
     {
-        if (strpos($template, self::BUST_PLACEHOLDER) === false) {
-            return false;
-        }
-
-        $bustValue = date('YmdHis');
-        $url = str_replace(self::BUST_PLACEHOLDER, $bustValue, $template);
+        $timestamp = date('YmdHis');
         
-        return $url;
+        foreach ($scopes as $_scope) {
+            /** @var ConfigValue $_scope */
+
+            $this->config->saveConfig(
+                $valuePath,
+                $timestamp,
+                $_scope->getScope(),
+                (int)$_scope->getScopeId()
+            );
+        }
     }
 }

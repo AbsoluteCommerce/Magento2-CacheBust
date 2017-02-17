@@ -4,14 +4,14 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Absolute_CDNCacheBust::action"
-                          title="Absolute CDN CacheBust Buttons"
+                <resource id="Absolute_CacheBust::action"
+                          title="Absolute  CacheBust Buttons"
                           translate="title"
                           sortOrder="100"/>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
-                        <resource id="Absolute_CDNCacheBust::config"
-                                  title="Absolute CDN CacheBust Configuration"
+                        <resource id="Absolute_CacheBust::config"
+                                  title="Absolute  CacheBust Configuration"
                                   translate="title"
                                   sortOrder="100"/>
                     </resource>

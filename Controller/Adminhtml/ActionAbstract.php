@@ -1,10 +1,13 @@
 <?php
-namespace Absolute\CDNCacheBust\Controller\Adminhtml;
+/**
+ * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ */
+namespace Absolute\CacheBust\Controller\Adminhtml;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Page;
-use Absolute\CDNCacheBust\Model\CacheBust;
+use Absolute\CacheBust\Model\CacheBust;
 
 abstract class ActionAbstract extends Action
 {
@@ -29,6 +32,6 @@ abstract class ActionAbstract extends Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Absolute_CDNCacheBust::action');
+        return $this->_authorization->isAllowed('Absolute_CacheBust::action');
     }
 }

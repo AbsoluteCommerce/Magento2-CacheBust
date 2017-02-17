@@ -4,10 +4,12 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="absolute_cdncachebust_all" xsi:type="object">Absolute\CDNCacheBust\Console\Command\AllCommand</item>
-                <item name="absolute_cdncachebust_static" xsi:type="object">Absolute\CDNCacheBust\Console\Command\StaticCommand</item>
-                <item name="absolute_cdncachebust_media" xsi:type="object">Absolute\CDNCacheBust\Console\Command\MediaCommand</item>
+                <item name="absolute_cachebust_all" xsi:type="object">Absolute\CacheBust\Console\Command\AllCommand</item>
+                <item name="absolute_cachebust_static" xsi:type="object">Absolute\CacheBust\Console\Command\StaticCommand</item>
+                <item name="absolute_cachebust_media" xsi:type="object">Absolute\CacheBust\Console\Command\MediaCommand</item>
             </argument>
         </arguments>
     </type>
+    
+    <preference for="Magento\Theme\Model\Url\Plugin\Signature" type="Absolute\CacheBust\Plugin\Signature" />
 </config>
