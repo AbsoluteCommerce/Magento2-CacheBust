@@ -21,7 +21,7 @@
                  showInDefault="1"
                  showInWebsite="1"
                  showInStore="1">
-            <label>Cache Bust</label>
+            <label>Absolute CacheBust</label>
             <tab>absolute_commerce</tab>
             <resource>Absolute_CacheBust::config</resource>
             <group id="static"
@@ -52,7 +52,7 @@
                        showInWebsite="1"
                        showInStore="1"
                        canRestore="1">
-                    <label>Signature Template</label>
+                    <label>URL Template</label>
                     <comment><![CDATA[This will be included in your Static URL with '%s' replaced with a timestamp, eg: https://abscom.co/static/version12345/path/to/file.js. The default is: version%s]]></comment>
                 </field>
             </group>
@@ -69,8 +69,8 @@
                        type="select"
                        sortOrder="10"
                        showInDefault="1"
-                       showInWebsite="0"
-                       showInStore="0"
+                       showInWebsite="1"
+                       showInStore="1"
                        canRestore="1">
                     <label>Enabled</label>
                     <source_model>Absolute\CacheBust\Model\Source\YesNo</source_model>
@@ -84,7 +84,7 @@
                        showInWebsite="1"
                        showInStore="1"
                        canRestore="1">
-                    <label>Signature Template</label>
+                    <label>URL Template</label>
                     <comment><![CDATA[This will be included in your Media URL with '%s' replaced with a timestamp, eg: https://abscom.co/media/version12345/path/to/file.js. The default is: version%s]]></comment>
                 </field>
             </group>

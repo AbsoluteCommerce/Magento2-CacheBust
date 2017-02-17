@@ -55,6 +55,7 @@ class CacheBust
     {
         $this->bustStatic(false);
         $this->bustMedia(false);
+        
         $this->clearCache();
     }
 
@@ -63,8 +64,10 @@ class CacheBust
      */
     public function bustStatic($clearCache = true)
     {
-        $scopes = $this->_getEnabledScopes(CacheBustConfig::XML_PATH_STATIC_ENABLED);
-        $this->_updateValues($scopes, CacheBustConfig::XML_PATH_STATIC_VALUE);
+        $this->_updateValues(
+            CacheBustConfig::XML_PATH_STATIC_ENABLED,
+            CacheBustConfig::XML_PATH_STATIC_VALUE
+        );
         
         if ($clearCache) {
             $this->clearCache();
@@ -76,8 +79,10 @@ class CacheBust
      */
     public function bustMedia($clearCache = true)
     {
-        $scopes = $this->_getEnabledScopes(CacheBustConfig::XML_PATH_MEDIA_ENABLED);
-        $this->_updateValues($scopes, CacheBustConfig::XML_PATH_MEDIA_VALUE);
+        $this->_updateValues(
+            CacheBustConfig::XML_PATH_MEDIA_ENABLED,
+            CacheBustConfig::XML_PATH_MEDIA_VALUE
+        );
 
         if ($clearCache) {
             $this->clearCache();
@@ -95,35 +100,47 @@ class CacheBust
     }
 
     /**
-     * @param string $path
-     * @return ConfigCollection
-     */
-    private function _getEnabledScopes($path)
-    {
-        /** @var ConfigCollection $configCollection */
-        $configCollection = $this->configCollectionFactory->create();
-        $configCollection->addFieldToFilter('path', $path);
-        $configCollection->addFieldToFilter('value', YesNo::OPTION_YES);
-        
-        return $configCollection;
-    }
-
-    /**
-     * @param ConfigCollection $scopes
+     * @param string $enabledPath
      * @param string $valuePath
      */
-    private function _updateValues(ConfigCollection $scopes, $valuePath)
+    private function _updateValues($enabledPath, $valuePath)
     {
-        $timestamp = date('YmdHis');
+        $this->_deleteExistingValues($valuePath);
         
-        foreach ($scopes as $_scope) {
-            /** @var ConfigValue $_scope */
+        /** @var ConfigCollection $configCollection */
+        $configCollection = $this->configCollectionFactory->create();
+        $configCollection->addFieldToFilter('path', $enabledPath);
+        $configCollection->addFieldToFilter('value', YesNo::OPTION_YES);
+        
+        $timestamp = date('YmdHis');
+        foreach ($configCollection as $_configValue) {
+            /** @var ConfigValue $_configValue */
 
             $this->config->saveConfig(
                 $valuePath,
                 $timestamp,
-                $_scope->getScope(),
-                (int)$_scope->getScopeId()
+                $_configValue->getScope(),
+                (int)$_configValue->getScopeId()
+            );
+        }
+    }
+
+    /**
+     * @param string $valuePath
+     */
+    private function _deleteExistingValues($valuePath)
+    {
+        /** @var ConfigCollection $configCollection */
+        $configCollection = $this->configCollectionFactory->create();
+        $configCollection->addFieldToFilter('path', $valuePath);
+
+        foreach ($configCollection as $_configValue) {
+            /** @var ConfigValue $_configValue */
+
+            $this->config->deleteConfig(
+                $_configValue->getPath(),
+                $_configValue->getScope(),
+                (int)$_configValue->getScopeId()
             );
         }
     }
