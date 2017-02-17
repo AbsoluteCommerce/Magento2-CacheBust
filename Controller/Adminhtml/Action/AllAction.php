@@ -15,7 +15,7 @@ class AllAction extends ActionAbstract
     public function execute()
     {
         try {
-            $this->cacheBustModel->bustAll();
+            $this->cacheBust->bustAll();
             $this->messageManager->addSuccessMessage(
                 __('All URLs have been Cache Busted.')
             );

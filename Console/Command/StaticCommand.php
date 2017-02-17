@@ -28,6 +28,6 @@ class StaticCommand extends CommandAbstract
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->cacheBustModel->bustStatic();
+        $this->cacheBust->bustStatic();
     }
 }

@@ -12,7 +12,7 @@ use Absolute\CacheBust\Model\CacheBust;
 abstract class ActionAbstract extends Action
 {
     /** @var CacheBust */
-    protected $cacheBustModel;
+    protected $cacheBust;
 
     /**
      * @param Context $context
@@ -22,7 +22,7 @@ abstract class ActionAbstract extends Action
         Context $context,
         CacheBust $cacheBust
     ) {
-        $this->cacheBustModel = $cacheBust;
+        $this->cacheBust = $cacheBust;
 
         parent::__construct($context);
     }

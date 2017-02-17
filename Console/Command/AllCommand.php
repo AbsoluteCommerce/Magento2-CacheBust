@@ -28,6 +28,6 @@ class AllCommand extends CommandAbstract
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->cacheBustModel->bustAll();
+        $this->cacheBust->bustAll();
     }
 }

@@ -16,7 +16,8 @@ class Config
     const XML_PATH_MEDIA_TEMPLATE = 'absolute_cachebust/media/template';
     const XML_PATH_MEDIA_VALUE    = 'absolute_cachebust/media/value';
 
-    const TEMPLATE_DEFAULT = 'version%s';
+    const DEFAULT_TEMPLATE = 'version%s';
+    const DEFAULT_VALUE    = '19700101010000';
 
     /** @var ScopeConfigInterface */
     private $scopeConfig;
@@ -44,8 +45,9 @@ class Config
     public function getStaticTemplate()
     {
         $template = trim($this->scopeConfig->getValue(self::XML_PATH_STATIC_TEMPLATE));
+        
         if (empty($template)) {
-            $template = self::TEMPLATE_DEFAULT;
+            $template = self::DEFAULT_TEMPLATE;
         }
 
         return $template;
@@ -57,6 +59,10 @@ class Config
     public function getStaticValue()
     {
         $value = trim($this->scopeConfig->getValue(self::XML_PATH_STATIC_VALUE));
+        
+        if (empty($value)) {
+            $value = self::DEFAULT_VALUE;
+        }
 
         return $value;
     }
@@ -75,8 +81,9 @@ class Config
     public function getMediaTemplate()
     {
         $template = trim($this->scopeConfig->getValue(self::XML_PATH_MEDIA_TEMPLATE));
+        
         if (empty($template)) {
-            $template = self::TEMPLATE_DEFAULT;
+            $template = self::DEFAULT_TEMPLATE;
         }
 
         return $template;
@@ -88,7 +95,11 @@ class Config
     public function getMediaValue()
     {
         $value = trim($this->scopeConfig->getValue(self::XML_PATH_MEDIA_VALUE));
-
+        
+        if (empty($value)) {
+            $value = self::DEFAULT_VALUE;
+        }
+        
         return $value;
     }
 }

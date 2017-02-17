@@ -28,6 +28,6 @@ class MediaCommand extends CommandAbstract
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->cacheBustModel->bustMedia();
+        $this->cacheBust->bustMedia();
     }
 }

@@ -15,7 +15,7 @@ class StaticAction extends ActionAbstract
     public function execute()
     {
         try {
-            $this->cacheBustModel->bustStatic();
+            $this->cacheBust->bustStatic();
             $this->messageManager->addSuccessMessage(
                 __('Static URLs have been Cache Busted.')
             );

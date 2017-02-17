@@ -12,7 +12,7 @@ abstract class CommandAbstract extends Command
     const COMMAND_NAMESPACE = 'absolute:cache-bust:';
     
     /** @var CacheBust */
-    protected $cacheBustModel;
+    protected $cacheBust;
 
     /**
      * @param CacheBust $cacheBust
@@ -22,6 +22,6 @@ abstract class CommandAbstract extends Command
     ) {
         parent::__construct();
         
-        $this->cacheBustModel = $cacheBust;
+        $this->cacheBust = $cacheBust;
     }
 }

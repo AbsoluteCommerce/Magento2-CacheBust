@@ -15,7 +15,7 @@ class MediaAction extends ActionAbstract
     public function execute()
     {
         try {
-            $this->cacheBustModel->bustMedia();
+            $this->cacheBust->bustMedia();
             $this->messageManager->addSuccessMessage(
                 __('Media URLs have been Cache Busted.')
             );
