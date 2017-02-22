@@ -74,7 +74,7 @@ class CacheBust
     }
 
     /**
-     * 
+     *
      */
     public function clearCache()
     {
