@@ -6,7 +6,7 @@
             <group id="static">
                 <field id="sign">
                     <comment><![CDATA[
-                    <strong>Notice: this setting is not in use. See Absolute Commerce Cache Bust configuration.</strong>
+                    <strong>Notice: this setting is not in use. See Absolute Commerce CacheBust.</strong>
                     ]]></comment>
                 </field>
             </group>
@@ -37,20 +37,20 @@
                        type="select"
                        sortOrder="10"
                        showInDefault="1"
-                       showInWebsite="1"
-                       showInStore="1"
+                       showInWebsite="0"
+                       showInStore="0"
                        canRestore="1">
                     <label>Enabled</label>
                     <source_model>Absolute\CacheBust\Model\Source\YesNo</source_model>
-                    <comment>Enable / Disable Cache Busting at Global, Website or Store level.</comment>
+                    <comment>Enable / Disable appending Cache Busting segment to Static URLs.</comment>
                 </field>
                 <field id="template"
                        translate="label comment"
                        type="text"
                        sortOrder="20"
                        showInDefault="1"
-                       showInWebsite="1"
-                       showInStore="1"
+                       showInWebsite="0"
+                       showInStore="0"
                        canRestore="1">
                     <label>URL Template</label>
                     <comment><![CDATA[This will be included in your Static URL with '%s' replaced with a timestamp, eg: https://abscom.co/static/version12345/path/to/file.js. The default is: version%s]]></comment>
@@ -69,20 +69,20 @@
                        type="select"
                        sortOrder="10"
                        showInDefault="1"
-                       showInWebsite="1"
-                       showInStore="1"
+                       showInWebsite="0"
+                       showInStore="0"
                        canRestore="1">
                     <label>Enabled</label>
                     <source_model>Absolute\CacheBust\Model\Source\YesNo</source_model>
-                    <comment>Enable / Disable Cache Busting at Global, Website or Store level.</comment>
+                    <comment>Enable / Disable appending Cache Busting segment to Media URLs.</comment>
                 </field>
                 <field id="template"
                        translate="label comment"
                        type="text"
                        sortOrder="20"
                        showInDefault="1"
-                       showInWebsite="1"
-                       showInStore="1"
+                       showInWebsite="0"
+                       showInStore="0"
                        canRestore="1">
                     <label>URL Template</label>
                     <comment><![CDATA[This will be included in your Media URL with '%s' replaced with a timestamp, eg: https://abscom.co/media/version12345/path/to/file.js. The default is: version%s]]></comment>
@@ -91,4 +91,3 @@
         </section>
     </system>
 </config>
-
