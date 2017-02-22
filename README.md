@@ -1,2 +1,2 @@
-# Absolute Cache Bust
-Find installation instructions and full documentation at https://abscom.co/cachebust.
+# Absolute CacheBust
+Find installation instructions and full documentation at https://abscom.co/cachebust
