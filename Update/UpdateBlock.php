@@ -12,6 +12,9 @@ use Magento\Framework\Module\ModuleList\Loader;
 
 class UpdateBlock extends Template implements RendererInterface
 {
+    const UTM_SOURCE = 'magento2-admin';
+    const UTM_MEDIUM = 'block';
+    
     /** @var Loader */
     private $loader;
     
@@ -38,13 +41,18 @@ class UpdateBlock extends Template implements RendererInterface
     {
         $name = $this->getName();
         $version = $this->getVersion();
+        $extension = $this->getExtension();
         $logoImageData = $this->getLogoImageData();
+        $supportLink = 'https://absolutecommerce.co.uk'
+            . '?utm_source=' . self::UTM_SOURCE
+            . '&utm_medium=' . self::UTM_MEDIUM
+            . '&utm_campaign=' . $extension;
         
         $html = <<<EOF
 <div style="border: 1px solid #cccccc; padding: 20px 20px 10px 20px; margin-bottom:10px;">
-    <p style="padding-bottom: 10px;"><a href="https://absolutecommerce.co.uk" target="_blank"><img width="200px" src="{$logoImageData}"/></a><p>
+    <p style="padding-bottom: 10px;"><a href="{$supportLink}" target="_blank"><img width="200px" src="{$logoImageData}"/></a><p>
     <p><strong style="color:#6c2a2a;">{$name} v{$version} from Absolute Commerce</strong></p>
-    <p>Need help or custom development? Find us at <a style="color: #6c2a2a;" href="https://absolutecommerce.co.uk" target="_blank">https://absolutecommerce.co.uk</a></p>
+    <p>Need help or custom development? Find us at <a style="color: #6c2a2a;" href="{$supportLink}" target="_blank">https://absolutecommerce.co.uk</a></p>
 </div>
 EOF;
         
