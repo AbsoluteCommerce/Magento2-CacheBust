@@ -29,6 +29,13 @@
             <label>Absolute CacheBust</label>
             <tab>absolute_commerce</tab>
             <resource>Absolute_CacheBust::config</resource>
+            <group id="update"
+                   sortOrder="0"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <frontend_model>Absolute\CacheBust\Update\UpdateBlock</frontend_model>
+            </group>
             <group id="static"
                    translate="label"
                    type="text"

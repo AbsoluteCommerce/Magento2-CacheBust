@@ -13,7 +13,7 @@ class UpdateFeed extends MagentoFeed
     const CACHE_KEY_LAST_CHECK = 'absolute_cachebust_update_last_check';
 
     /**
-     * @inheritdoc
+     * @return bool|\SimpleXMLElement
      */
     public function getFeedData()
     {
@@ -54,7 +54,7 @@ class UpdateFeed extends MagentoFeed
     }
 
     /**
-     * @inheritdoc
+     * @return string
      */
     public function getFeedUrl()
     {
@@ -66,7 +66,7 @@ class UpdateFeed extends MagentoFeed
     }
 
     /**
-     * @inheritdoc
+     * @return int
      */
     public function getLastUpdate()
     {
@@ -74,7 +74,7 @@ class UpdateFeed extends MagentoFeed
     }
 
     /**
-     * @inheritdoc
+     * @return $this
      */
     public function setLastUpdate()
     {

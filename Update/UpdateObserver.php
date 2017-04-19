@@ -21,6 +21,7 @@ class UpdateObserver implements ObserverInterface
     /**
      * @param UpdateFeedFactory $updateFeedFactory
      * @param Session $backendAuthSession
+     * 
      * @see \Magento\AdminNotification\Observer\PredispatchAdminActionControllerObserver
      */
     public function __construct(

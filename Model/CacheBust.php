@@ -54,7 +54,7 @@ class CacheBust
      */
     public function bustStatic($clearCache = true)
     {
-        $this->_updateValue(CacheBustConfig::XML_PATH_STATIC_VALUE);
+        $this->updateValue(CacheBustConfig::XML_PATH_STATIC_VALUE);
         
         if ($clearCache) {
             $this->clearCache();
@@ -66,7 +66,7 @@ class CacheBust
      */
     public function bustMedia($clearCache = true)
     {
-        $this->_updateValue(CacheBustConfig::XML_PATH_MEDIA_VALUE);
+        $this->updateValue(CacheBustConfig::XML_PATH_MEDIA_VALUE);
 
         if ($clearCache) {
             $this->clearCache();
@@ -86,7 +86,7 @@ class CacheBust
     /**
      * @param string $valuePath
      */
-    private function _updateValue($valuePath)
+    private function updateValue($valuePath)
     {
         $this->config->saveConfig(
             $valuePath,

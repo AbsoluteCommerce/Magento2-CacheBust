@@ -40,7 +40,7 @@ class Config
     }
 
     /**
-     * @return bool
+     * @return string
      */
     public function getStaticTemplate()
     {
@@ -54,7 +54,7 @@ class Config
     }
 
     /**
-     * @return bool
+     * @return string
      */
     public function getStaticValue()
     {
@@ -76,7 +76,7 @@ class Config
     }
 
     /**
-     * @return bool
+     * @return string
      */
     public function getMediaTemplate()
     {
@@ -90,7 +90,7 @@ class Config
     }
 
     /**
-     * @return bool
+     * @return string
      */
     public function getMediaValue()
     {
