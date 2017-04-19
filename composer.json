@@ -4,9 +4,6 @@
     "type": "magento2-module",
     "version": "2.3.1",
     "license": "proprietary",
-    "require": {
-        "php": ">=5.5"
-    },
     "autoload": {
         "files": [
             "registration.php"
