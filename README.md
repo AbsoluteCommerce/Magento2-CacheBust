@@ -22,7 +22,7 @@ The intention is for the web server to ignore the segment `/version12345/` and p
 
 Add the following to the appropriate location in your web server configuration.
 
-# Nginx
+## Nginx
 
 ```
 location ~ ^/static/version {
@@ -42,14 +42,14 @@ RewriteRule ^/media/(version\d*/)?(.*)$ /media/$2 [QSA,L]
 ```
 
 # Usage
-Once installed and configured, there are various ways to bust your Magento 2 website asset cache.
+Once installed and configured, there are various ways to bust your Magento 2 websites cached assets.
 
 ## Admin Panel Buttons
-In the Magento Admin Panel go to `System > Cache Management` and you will see a new section at the bottom called 'Cache Busting'.
-Clicking these buttons will update the dynamic element of the `/version12345/` and then flush the appropriate Magento caches, so on their next visit your customers will download the assets afresh.
+In the Magento Admin Panel go to `System > Cache Management` and you will see a new section at the bottom called `Cache Busting`.
+Clicking these buttons will update the dynamic element `/version12345/` with a new value and then flush the appropriate Magento caches, so on their next visit your customers will download the assets afresh.
 
 ## Command Line Interface (CLI)
-In the Magento CLI tool you will see some new commands available, which can be used to bust cache during a deployment for example.
+In the Magento CLI tool you will see some new commands available, which can be used to automatically bust your cache during a deployment for example.
 
 ```
 ./bin/magento absolute:cache-bust:all
@@ -59,3 +59,4 @@ In the Magento CLI tool you will see some new commands available, which can be u
 
 # Help / Support
 Need help or custom development? Find us at https://absolutecommerce.co.uk.
+For terms and conditions and license information, please visit https://abscom.co/terms.
