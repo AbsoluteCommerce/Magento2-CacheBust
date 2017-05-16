@@ -23,22 +23,75 @@ The intention is for the web server to ignore the segment `/version12345/` and p
 Add the following to the appropriate location in your web server configuration.
 
 ## Nginx
+For the static cache busting, Magento already has the following in the recommended nginx configuration:
 
 ```
-location ~ ^/static/version {
-    rewrite ^/static/(version\d*/)?(.*)$ /static/$2 last;
-}
+location /static/ {
+    ...
 
-location ~ ^/media/version {
-    rewrite ^/media/(version\d*/)?(.*)$ /media/$2 last;
+    location ~ ^/static/version {
+        rewrite ^/static/(version\d*/)?(.*)$ /static/$2 last;
+    }
+    
+    ...
+```
+
+For the media cache busting, add the following to your nginx configuration:
+
+```
+location /media/ {
+   ...
+   
+   location ~ ^/media/version {
+       rewrite ^/media/(version\d*/)?(.*)$ /media/$2 last;
+   }
+   
+   ...
 }
 ```
 
 ## Apache
+For the static cache busting, Magento already has the following configuration in `pub/static/.htaccess`:
+ 
+```
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Remove signature of the static files that is used to overcome the browser cache
+    RewriteRule ^version.+?/(.+)$ $1 [L]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-l
+
+    RewriteRule .* ../static.php?resource=$0 [L]
+</IfModule>
+```
+
+For the media cache busting, update `pub/media/.htaccess` with the following:
 
 ```
-RewriteRule ^/static/(version\d*/)?(.*)$ /static/$2 [QSA,L]
-RewriteRule ^/media/(version\d*/)?(.*)$ /media/$2 [QSA,L]
+<IfModule mod_rewrite.c>
+
+############################################
+## enable rewrites
+
+    Options +FollowSymLinks
+    RewriteEngine on
+
+############################################
+## Absolute CacheBust
+    RewriteRule ^version.+?/(.+)$ $1 [L]
+
+############################################
+## never rewrite for existing files
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+############################################
+## rewrite everything else to index.php
+
+    RewriteRule .* ../get.php [L]
+    
+</IfModule>
 ```
 
 # Usage
