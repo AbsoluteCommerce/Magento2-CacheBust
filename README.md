@@ -3,6 +3,11 @@ With Absolute CacheBust for Magento 2 you can ensure your customers are viewing 
 This extension can be used with or without a CDN, and will also bust local versions of assets in your customers web browser cache.
 Find more information at https://abscom.co/cachebust.
 
+# Version Compatibility
+
+- For Magento 2.2.x please use version 3.x.x of this module.
+- For earlier Magento versions, please use version 2.x.x of this module.
+
 # Installation
 The best way to add the extension is via composer.
 
