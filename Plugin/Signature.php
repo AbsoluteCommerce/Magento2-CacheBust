@@ -24,19 +24,17 @@ class Signature
 
     /**
      * @param ScopeInterface $subject
-     * @param \Closure $proceed
+     * @param string $baseUrl
      * @param string $type
      * @param null $secure
      * @return string
      */
-    public function aroundGetBaseUrl(
+    public function afterGetBaseUrl(
         ScopeInterface $subject,
-        \Closure $proceed,
+        $baseUrl,
         $type = UrlInterface::URL_TYPE_LINK,
         $secure = null
     ) {
-        $baseUrl = $proceed($type, $secure);
-        
         switch ($type) {
             case UrlInterface::URL_TYPE_STATIC:
                 if ($this->config->isStaticEnabled()) {
