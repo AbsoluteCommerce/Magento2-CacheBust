@@ -55,7 +55,7 @@ class UpdateBlock extends Template implements RendererInterface
 <div style="border: 1px solid #cccccc; padding: 20px 20px 10px 20px; margin-bottom:10px;">
     <p style="padding-bottom: 10px;"><a href="{$supportLink}" target="_blank"><img width="200px" src="{$logoImageData}"/></a><p>
     <p><strong style="color:#6c2a2a;">{$name} v{$version} from Absolute Commerce</strong></p>
-    <p>Need help or custom development? Find us at <a style="color: #6c2a2a;" href="{$supportLink}" target="_blank">https://absolutecommerce.co.uk</a></p>
+    <p>Need help or custom development? Find us at <strong><a style="color: #6c2a2a;" href="{$supportLink}" target="_blank">https://absolutecommerce.co.uk</a></strong></p>
 </div>
 EOF;
         
