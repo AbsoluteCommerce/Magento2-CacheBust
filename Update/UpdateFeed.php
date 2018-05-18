@@ -1,6 +1,7 @@
 <?php
 /**
- * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ * @copyright Absolute Commerce Ltd.
+ * @license https://abscom.co/terms
  */
 namespace Absolute\CacheBust\Update;
 
@@ -9,8 +10,22 @@ use Magento\AdminNotification\Model\Feed as MagentoFeed;
 class UpdateFeed extends MagentoFeed
 {
     const FEED_TIMEOUT         = 5;
+    const XML_FEED_ENABLED     = 'absolute_cachebust/update/is_enabled';
     const XML_FEED_URL_PATH    = 'absolute_cachebust/update/feed_url';
     const CACHE_KEY_LAST_CHECK = 'absolute_cachebust_update_last_check';
+
+    /**
+     * @inheritdoc
+     */
+    public function checkUpdate()
+    {
+        /** @see \Magento\Config\Model\Config\Source\Yesno */
+        if ($this->_backendConfig->getValue(self::XML_FEED_ENABLED) != '1') {
+            return $this;
+        }
+        
+        return parent::checkUpdate();
+    }
 
     /**
      * @return bool|\SimpleXMLElement

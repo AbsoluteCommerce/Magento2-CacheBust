@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ * @copyright Absolute Commerce Ltd.
+ * @license https://abscom.co/terms
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -11,7 +12,7 @@
             <group id="static">
                 <field id="sign">
                     <comment><![CDATA[
-                    <strong>Notice: this setting is not in use. See Absolute Commerce CacheBust.</strong>
+                    <strong>Notice: this setting is not in use. See Absolute Commerce Cache Bust.</strong>
                     ]]></comment>
                 </field>
             </group>
@@ -26,10 +27,10 @@
                  showInDefault="1"
                  showInWebsite="1"
                  showInStore="1">
-            <label>Absolute CacheBust</label>
+            <label>Absolute Cache Bust</label>
             <tab>absolute_commerce</tab>
             <resource>Absolute_CacheBust::config</resource>
-            <group id="update"
+            <group id="info"
                    sortOrder="0"
                    showInDefault="1"
                    showInWebsite="1"
@@ -71,7 +72,7 @@
             <group id="media"
                    translate="label"
                    type="text"
-                   sortOrder="10"
+                   sortOrder="20"
                    showInDefault="1"
                    showInWebsite="1"
                    showInStore="1">
@@ -98,6 +99,27 @@
                        canRestore="1">
                     <label>URL Template</label>
                     <comment><![CDATA[This will be included in your Media URL with '%s' replaced with a timestamp, eg: https://abscom.co/media/version12345/path/to/file.js. The default is: version%s]]></comment>
+                </field>
+            </group>
+            <group id="update"
+                   translate="label"
+                   type="text"
+                   sortOrder="30"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Update Notifications</label>
+                <field id="is_enabled"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Admin Panel notifications from Absolute Commerce with information about our extensions, products and services. Find out more at <a href="https://abscom.co/terms" target="_blank">https://abscom.co/terms</a>.]]></comment>
                 </field>
             </group>
         </section>

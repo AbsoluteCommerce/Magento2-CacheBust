@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ * @copyright Absolute Commerce Ltd.
+ * @license https://abscom.co/terms
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,7 +10,8 @@
     <default>
         <absolute_cachebust>
             <update>
-                <feed_url>https://absolutecommerce.co.uk/absolute/update?extension=absolute_cachebust</feed_url>
+                <is_enabled>1</is_enabled>
+                <feed_url>https://absolutecommerce.co.uk/absolute/update?extension=absolute_cachebust_m2</feed_url>
             </update>
             <static>
                 <is_enabled>0</is_enabled>

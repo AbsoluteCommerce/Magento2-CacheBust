@@ -1,6 +1,7 @@
 <?php
 /**
- * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ * @copyright Absolute Commerce Ltd.
+ * @license https://abscom.co/terms
  */
 namespace Absolute\CacheBust\Update;
 
@@ -9,6 +10,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Framework\Module\ModuleList\Loader;
+use Magento\Framework\Exception\LocalizedException;
 
 class UpdateBlock extends Template implements RendererInterface
 {
@@ -36,6 +38,7 @@ class UpdateBlock extends Template implements RendererInterface
     /**
      * @param AbstractElement $element
      * @return string
+     * @throws LocalizedException
      */
     public function render(AbstractElement $element)
     {
@@ -78,6 +81,7 @@ EOF;
 
     /**
      * @return string
+     * @throws LocalizedException
      */
     private function getVersion()
     {
@@ -91,6 +95,8 @@ EOF;
     }
 
     /**
+     * Base64 string version of the Absolute Commerce logo
+     * 
      * @return string
      */
     private function getLogoImageData()
