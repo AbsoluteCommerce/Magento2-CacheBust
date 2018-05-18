@@ -1,6 +1,7 @@
 <?php
 /**
- * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ * @copyright Absolute Commerce Ltd.
+ * @license https://abscom.co/terms
  */
 namespace Absolute\CacheBust\Console\Command;
 

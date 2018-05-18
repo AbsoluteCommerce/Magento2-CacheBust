@@ -1,11 +1,11 @@
-# Absolute CacheBust
-With Absolute CacheBust for Magento 2 you can ensure your customers are viewing the latest version of your images, CSS and JavaScript files.
+# Absolute Cache Bust
+With Absolute Cache Bust for Magento 2 you can ensure your customers are viewing the latest version of your images, CSS and JavaScript files.
 This extension can be used with or without a CDN, and will also bust local versions of assets in your customers web browser cache.
 Find more information at https://abscom.co/cachebust.
 
 # Version Compatibility
 
-- For Magento 2.2.x please use version 3.x.x of this module.
+- For Magento 2.2.x and later please use version 3.x.x of this module.
 - For earlier Magento versions, please use version 2.x.x of this module.
 
 # Installation
@@ -84,7 +84,7 @@ For the media cache busting, update `pub/media/.htaccess` with the following:
     RewriteEngine on
 
 ############################################
-## Absolute CacheBust
+## Absolute Cache Bust
     RewriteRule ^version.+?/(.+)$ $1 [L]
 
 ############################################

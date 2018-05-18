@@ -1,6 +1,7 @@
 <?php
 /**
- * @copyright 2017 Absolute Commerce Ltd. (https://abscom.co/terms)
+ * @copyright Absolute Commerce Ltd.
+ * @license https://abscom.co/terms
  */
 namespace Absolute\CacheBust\Console\Command;
 
@@ -29,5 +30,6 @@ class MediaCommand extends CommandAbstract
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->cacheBust->bustMedia();
+        $output->writeln('<info>Media URLs cache busted successfully.</info>');
     }
 }
