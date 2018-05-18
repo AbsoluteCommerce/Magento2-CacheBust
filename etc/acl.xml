@@ -10,16 +10,10 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Absolute_CacheBust::action"
-                          title="Absolute Cache Bust Buttons"
-                          translate="title"
-                          sortOrder="100"/>
+                <resource id="Absolute_CacheBust::action" title="Absolute Cache Bust Buttons" translate="title" sortOrder="100"/>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
-                        <resource id="Absolute_CacheBust::config"
-                                  title="Absolute Cache Bust Configuration"
-                                  translate="title"
-                                  sortOrder="100"/>
+                        <resource id="Absolute_CacheBust::config" title="Absolute Cache Bust Configuration" translate="title" sortOrder="100"/>
                     </resource>
                 </resource>
             </resource>
