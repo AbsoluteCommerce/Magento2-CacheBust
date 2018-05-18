@@ -19,7 +19,8 @@ class UpdateFeed extends MagentoFeed
      */
     public function checkUpdate()
     {
-        if (!$this->_backendConfig->isSetFlag(self::XML_FEED_ENABLED)) {
+        /** @see \Magento\Config\Model\Config\Source\Yesno */
+        if ($this->_backendConfig->getValue(self::XML_FEED_ENABLED) != '1') {
             return $this;
         }
         

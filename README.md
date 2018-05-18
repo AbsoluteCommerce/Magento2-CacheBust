@@ -5,8 +5,8 @@ Find more information at https://abscom.co/cachebust.
 
 # Version Compatibility
 
-- For Magento 2.2.x and later please use version 3.x.x of this module.
-- For earlier Magento versions, please use version 2.x.x of this module.
+- For Magento 2.2.x and later please use version 3.x.x of this extension.
+- For earlier Magento versions, please use version 2.x.x of this extension.
 
 # Installation
 The best way to add the extension is via composer.
