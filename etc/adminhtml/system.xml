@@ -21,7 +21,7 @@
             <label>Absolute Commerce</label>
         </tab>
         <section id="absolute_cachebust" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Absolute Cache Bust</label>
+            <label>Absolute // Cache Bust</label>
             <tab>absolute_commerce</tab>
             <resource>Absolute_CacheBust::config</resource>
             <group id="info" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
