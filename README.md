@@ -99,6 +99,19 @@ For the media cache busting, update `pub/media/.htaccess` with the following:
 </IfModule>
 ```
 
+# CORS
+Since Magento 2.2.x you will also need to configure your web server to allow CORS requests through, otherwise you may see errors like: 
+
+- ... OPTIONS ... 405 ()
+- Uncaught SyntaxError: Unexpected end of JSON input
+- Response for preflight has invalid HTTP status code 405
+- Request header field x-requested-with is not allowed
+- No 'Access-Control-Allow-Origin' header is present
+- Access has been blocked by CORS policy
+
+You can find out more about the required configuration here:
+https://absolutecommerce.co.uk/cors-in-magento-2
+
 # Usage
 Once installed and configured, there are various ways to bust your Magento 2 websites cached assets.
 
