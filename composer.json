@@ -2,7 +2,7 @@
     "name": "absolute/magento2-cache-bust",
     "description": "Absolute Commerce Cache Bust extension for Magento 2",
     "type": "magento2-module",
-    "version": "3.1.0",
+    "version": "3.1.1",
     "license": "proprietary",
     "autoload": {
         "files": [
