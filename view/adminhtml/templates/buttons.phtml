@@ -13,21 +13,21 @@
     </h2>
     
     <p>
-        <button onclick="setLocation('<?php echo $block->escapeJs($block->escapeUrl($block->getCacheBustAllUrl())) ?>')" type="button">
+        <button onclick="setLocation('<?php echo /* @noEscape */ $block->getCacheBustAllUrl() ?>')" type="button">
             <?php echo $block->escapeHtml(__('Bust All URLs')) ?>
         </button>
         <span><?php echo $block->escapeHtml(__('The same as clicking each of the below buttons individually.')) ?></span>
     </p>
     
     <p>
-        <button onclick="setLocation('<?php echo $block->escapeJs($block->escapeUrl($block->getCacheBustStaticUrl())) ?>')" type="button">
+        <button onclick="setLocation('<?php echo /* @noEscape */ $block->getCacheBustStaticUrl() ?>')" type="button">
             <?php echo $block->escapeHtml(__('Bust Static URLs')) ?>
         </button>
         <span><?php echo $block->escapeHtml(__('Invalidate cache of JavaScript, CSS and image files.')) ?></span>
     </p>
     
     <p>
-        <button onclick="setLocation('<?php echo $block->escapeJs($block->escapeUrl($block->getCacheBustMediaUrl())) ?>')" type="button">
+        <button onclick="setLocation('<?php echo /* @noEscape */ $block->getCacheBustMediaUrl() ?>')" type="button">
             <?php echo $block->escapeHtml(__('Bust Media URLs')) ?>
         </button>
         <span><?php echo $block->escapeHtml(__('Invalidate cache of product images, category images, etc.')) ?></span>
