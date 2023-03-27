@@ -44,7 +44,7 @@ class UpdateFeed extends MagentoFeed
         );
         $curl->addOption(CURLOPT_FOLLOWLOCATION, true);
         
-        $curl->write(\Zend_Http_Client::GET, $this->getFeedUrl(), '1.0');
+        $curl->write('GET', $this->getFeedUrl(), '1.0');
         $data = $curl->read();
         $curl->close();
         
