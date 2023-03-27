@@ -16,7 +16,7 @@ class AllCommand extends CommandAbstract
     protected function configure()
     {
         parent::configure();
-        
+
         $this
             ->setName(self::COMMAND_NAMESPACE . 'all')
             ->setDescription('Bust All URLs.');
@@ -25,11 +25,12 @@ class AllCommand extends CommandAbstract
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return null
+     * @return int
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->cacheBust->bustAll();
         $output->writeln('<info>All URLs cache busted successfully.</info>');
+        return 0;
     }
 }

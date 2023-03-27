@@ -16,7 +16,7 @@ class StaticCommand extends CommandAbstract
     protected function configure()
     {
         parent::configure();
-        
+
         $this
             ->setName(self::COMMAND_NAMESPACE . 'static')
             ->setDescription('Bust Static URLs.');
@@ -25,11 +25,12 @@ class StaticCommand extends CommandAbstract
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return null
+     * @return int
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->cacheBust->bustStatic();
         $output->writeln('<info>Static URLs cache busted successfully.</info>');
+        return 0;
     }
 }
